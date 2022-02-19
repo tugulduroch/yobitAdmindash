@@ -2,9 +2,12 @@ import { createHandler } from "../../../lib/core/api/handler";
 import db from "@lib/core/data/db";
 import { Challenge, ChallengeViewModel } from "@lib/challenge/data/challenge";
 import { Task } from "@lib/task/data/task";
+import admin from "firebase-admin";
+import { authorize } from "@lib/core/api/middlewares/authorize";
 const handler = createHandler();
 
 handler
+  .use(authorize)
   .get(async (req, res) => {
     const entries = await db
       .collection("challenges")
