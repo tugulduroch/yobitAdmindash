@@ -1,18 +1,26 @@
 import { createHandler } from "../../../lib/core/api/handler";
 import db from "@lib/core/data/db";
 import { Challenge, ChallengeViewModel } from "@lib/challenge/data/challenge";
+import { Task } from "@lib/task/data/task";
 const handler = createHandler();
 
 handler
   .get(async (req, res) => {
-    const entries = await db.collection("challenges").get();
-    const entriesData = entries.docs.map((entry) => entry.data() as Challenge);
+    const entries = await db
+      .collection("challenges")
+      .doc(req.query.id as string)
+      .collection("tasks")
+      .get();
+    const entriesData = entries.docs.map((e) => e.data());
     res.send(entriesData);
   })
   .post(async (req, res) => {
-    const challenge: ChallengeViewModel = req.body;
-    console.log(challenge);
-    const result = await db.collection("challenges").add(challenge);
+    const task: Task = req.body;
+    const result = await db
+      .collection("challenges")
+      .doc(req.query.challengeId as string)
+      .collection("tasks")
+      .add(task);
     res.send(result);
   })
   .put(async (req, res) => {

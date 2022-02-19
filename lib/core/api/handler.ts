@@ -1,7 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
+import { corsMiddleware } from "@lib/core/api/cors";
 
 const middlewares = [
+    corsMiddleware
   ];
   
   export const createHandler = (options = {}) => {
@@ -16,6 +18,6 @@ const middlewares = [
       },
       ...options,
     })
-    // .use(...middlewares);
+    .use(...middlewares);
   };
   

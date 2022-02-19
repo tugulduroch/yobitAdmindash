@@ -22,7 +22,7 @@ build-job: # This job runs in the build stage, which runs first.
   tags:
     - yobit
   script:
-    - docker build -t delgerskhn/yodmin .
+    - sudo docker build -t delgerskhn/yodmin .
 
 # unit-test-job: # This job runs in the test stage.
 #   stage: test # It only starts when the job in the build stage completes successfully.
@@ -43,5 +43,5 @@ deploy-job: # This job runs in the deploy stage.
   tags:
     - yobit
   script:
-    - docker run --name yobitadmin -p 5000:5000 -dt delgerskhn/yodmin
-    - docker images --no-trunc --all --quiet --filter="dangling=true" | xargs --no-run-if-empty docker rmi -f
+    - sudo docker run --name yobitadmin -p 5000:5000 -dt delgerskhn/yodmin
+    - sudo docker images --no-trunc --all --quiet --filter="dangling=true" | xargs --no-run-if-empty docker rmi -f
