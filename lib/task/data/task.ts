@@ -4,4 +4,5 @@ export type Task = {
   content: string;
   endDate: Date;
   startDate: Date;
+  challengeId: string;
 };
