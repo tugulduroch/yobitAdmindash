@@ -15,6 +15,8 @@ handler
     const challenges = [];
     for (let entry of entries.docs) {
       const c = entry.data();
+      c.id = entry.id;
+
       c.imgUrl = (
         await storage.file(c.imgUrl).getSignedUrl({
           action: "read",
