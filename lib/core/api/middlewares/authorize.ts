@@ -13,7 +13,6 @@ export const authorize = async (
   auth()
     .verifyIdToken(token)
     .then((decoded) => {
-      console.log("ID Token correctly decoded", decoded);
       auth()
         .getUser(decoded.uid)
         .then((userRecord) => {

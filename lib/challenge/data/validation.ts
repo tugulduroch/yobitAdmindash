@@ -7,5 +7,6 @@ export const challengeValidation = [
   body("title").isLength({ min: 1 }),
   body("endDate").isLength({ min: 1 }),
   body("startDate").isLength({ min: 1 }),
+  body("isFeatured").isBoolean(),
   validateBody,
 ];

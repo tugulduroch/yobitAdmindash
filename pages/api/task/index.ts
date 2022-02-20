@@ -1,9 +1,9 @@
 import { createHandler } from "../../../lib/core/api/handler";
-import db from "@lib/core/data/db";
 import { Challenge, ChallengeViewModel } from "@lib/challenge/data/challenge";
 import { Task } from "@lib/task/data/task";
 import admin from "firebase-admin";
 import { authorize } from "@lib/core/api/middlewares/authorize";
+import { db } from "@lib/core/data/services";
 const handler = createHandler();
 
 handler
