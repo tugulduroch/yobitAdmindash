@@ -7,6 +7,7 @@ export type Challenge = {
   title: string;
   endDate: Date;
   startDate: Date;
+  isFeatured: boolean;
   tasks: Task[];
 };
 
@@ -17,4 +18,5 @@ export type ChallengeViewModel = {
   title: string;
   endDate: Date;
   startDate: Date;
+  isFeatured: boolean;
 };
