@@ -6,7 +6,7 @@ import { authorize } from "@lib/core/api/middlewares/authorize";
 const handler = createHandler();
 
 handler
-  // .use(authorize)
+  .use(authorize)
   .get(async (req, res) => {
     const entries = await db
       .collection("challenges")
