@@ -1,5 +1,5 @@
 import { createHandler } from "@lib/core/api/handler";
-import db from "@lib/core/data/db";
+import { db } from "@lib/core/data/services";
 
 export default createHandler().get(async (req, res) => {
   const entry = await (

@@ -1,7 +1,7 @@
 import { Challenge } from "@lib/challenge/data/challenge";
 import { createHandler } from "@lib/core/api/handler";
 import { authorize } from "@lib/core/api/middlewares/authorize";
-import db, { storage } from "@lib/core/data/db";
+import { db, storage } from "@lib/core/data/services";
 
 const handler = createHandler();
 

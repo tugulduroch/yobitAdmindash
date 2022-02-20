@@ -1,5 +1,5 @@
 import { createHandler } from "../../../lib/core/api/handler";
-import db, { storage } from "@lib/core/data/db";
+import { db, storage } from "@lib/core/data/services";
 import { Challenge, ChallengeViewModel } from "@lib/challenge/data/challenge";
 import { challengeValidation } from "@lib/challenge/data/validation";
 import { authorize } from "@lib/core/api/middlewares/authorize";

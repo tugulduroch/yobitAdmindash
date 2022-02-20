@@ -11,6 +11,6 @@ if (!admin.apps.length) {
     console.log("Firebase admin initialization error", error.stack);
   }
 }
-export default admin.firestore();
 
 export const storage = admin.storage().bucket("yobit-54b2a.appspot.com");
+export const db = admin.firestore();
