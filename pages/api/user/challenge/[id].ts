@@ -19,5 +19,5 @@ export default createHandler()
       userId: req.user.uid,
       challengeId: req.query.id,
     });
-    res.send(result);
+    res.send(true);
   });
