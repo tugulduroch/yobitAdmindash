@@ -15,7 +15,7 @@ handler
       .collection("tasks")
       .where("challengeId", "==", req.query.id as string)
       .get();
-    const entriesData = entries.docs.map((e) => e.data());
+    const entriesData = entries.docs.map((e) => ({ ...e.data(), id: e.id }));
     res.send(entriesData);
   })
   .post(...validateTask, async (req, res) => {
