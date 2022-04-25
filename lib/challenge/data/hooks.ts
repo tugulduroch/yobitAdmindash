@@ -1,4 +1,5 @@
 import { useAuth } from "@lib/auth/ui/AuthProvider";
+import { localizeDateFields } from "@lib/core/ui/helpers/dateLocalizer";
 import { fetcher } from "@lib/core/utils/query";
 import axios from "axios";
 import { useMutation, useQuery } from "react-query";
@@ -7,12 +8,7 @@ import { ChallengeViewModel } from "./challenge";
 export const useChallenges = () => {
   return useQuery<ChallengeViewModel[]>("challenges", async () => {
     let res: ChallengeViewModel[] = await fetcher.get("challenge");
-
-    return res.map((r) => ({
-      ...r,
-      startDate: r.startDate.replace("Z", ""),
-      endDate: r.endDate.replace("Z", ""),
-    }));
+    return localizeDateFields(["startDate", "endDate"], res);
   });
 };
 

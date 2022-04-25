@@ -129,6 +129,7 @@ export const ChallengeForm = ({ data }: Props) => {
         <FormErrorMessage>{errors.color?.message}</FormErrorMessage>
       </FormControl>
 
+      <FormLabel>Tasks</FormLabel>
       {data && <TaskList challengeId={data.id} />}
 
       <HStack justify="flex-end">

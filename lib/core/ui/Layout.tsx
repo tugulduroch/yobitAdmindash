@@ -34,7 +34,7 @@ export function Layout({ children }: Props) {
         >
           {children}
         </Flex>
-        <Flex color="darkgray" flex="1" p="6" bg="gray.100">
+        <Flex overflowY="auto" color="darkgray" flex="1" p="6" bg="gray.100">
           {detailReactNode}
         </Flex>
       </Flex>
