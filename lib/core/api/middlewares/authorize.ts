@@ -16,7 +16,6 @@ export const authenticate = async (
     const decodedToken: admin.auth.DecodedIdToken = await auth.verifyIdToken(
       token
     );
-    console.log("decodedToken", JSON.stringify(decodedToken));
     res.locals = {
       ...res.locals,
       uid: decodedToken.uid,

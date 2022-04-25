@@ -25,11 +25,13 @@ import {
   BiTagAlt,
   BiUser,
   BiUserCircle,
+  BiLogOut,
   BiUserPlus,
   BiWallet,
 } from "react-icons/bi";
 import { NavGroup } from "./NavGroup";
 import { AdminNavItem } from "./AdminNavItem";
+import { auth } from "@lib/auth/data/firebaseAuth";
 
 export const Sidebar = () => {
   return (
@@ -58,6 +60,11 @@ export const Sidebar = () => {
           <AdminNavItem icon={<BiTagAlt />} label="Tag" />
           {/* <NavItem icon={<BiPurchaseTagAlt />} label="Plans" />
         <NavItem icon={<BiRecycle />} label="Subsription" /> */}
+          <AdminNavItem
+            icon={<BiLogOut />}
+            label="Гарах"
+            onClick={() => auth.signOut()}
+          />
         </NavGroup>
       </Stack>
       <Box>
