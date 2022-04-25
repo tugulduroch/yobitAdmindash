@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
 import { corsMiddleware } from "@lib/core/api/cors";
-import { ApiRequest } from "../data/types";
+import { ApiRequest, ApiResponse } from "../data/types";
 
 const middlewares = [corsMiddleware];
 
 export const createHandler = (options = {}) => {
   console.log("create handler");
-  return nc<ApiRequest, NextApiResponse>({
+  return nc<ApiRequest, ApiResponse>({
     onError: (err, _, res) => {
       console.error(err);
       res.status(500).end(err.toString());
