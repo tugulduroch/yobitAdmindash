@@ -67,17 +67,6 @@ export const Sidebar = () => {
           />
         </NavGroup>
       </Stack>
-      <Box>
-        <Stack spacing="1">
-          {/* <NavItem subtle icon={<BiCog />} label="Тохирглл" /> */}
-          <AdminNavItem
-            subtle
-            icon={<BiBuoy />}
-            label="Тусламж & Заавар"
-            // endElement={<Circle size="2" bg="blue.400" />}
-          />
-        </Stack>
-      </Box>
     </Flex>
   );
 };

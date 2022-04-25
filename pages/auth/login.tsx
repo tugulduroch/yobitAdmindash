@@ -57,8 +57,7 @@ const App = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome</Heading>
+        <Heading color="#DD6B20" mt={2} pb={6}>Yobit - Удирдлагын хэсэг</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
           <form onSubmit={onSubmit}>
             <Stack
@@ -75,9 +74,9 @@ const App = () => {
                   />
                   <Input
                     type="email"
-                    placeholder="email address"
+                    placeholder="Мэйл хаяг"
                     {...register("email", {
-                      required: "Required",
+                      required: "Хоосон",
                     })}
                   />
                 </InputGroup>
@@ -92,40 +91,31 @@ const App = () => {
                   />
                   <Input
                     type={showPassword ? "text" : "password"}
-                    placeholder="Password"
+                    placeholder="Нууц үг"
                     {...register("password", {
                       required: "Required",
                     })}
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                      {showPassword ? "Hide" : "Show"}
+                      {showPassword ? "Нуух" : "Харах"}
                     </Button>
                   </InputRightElement>
                 </InputGroup>
-                <FormHelperText textAlign="right">
-                  <Link>forgot password?</Link>
-                </FormHelperText>
               </FormControl>
               <Button
                 borderRadius={0}
                 type="submit"
                 variant="solid"
-                colorScheme="teal"
+                colorScheme="orange"
                 width="full"
               >
-                Login
+                Нэвтрэх
               </Button>
             </Stack>
           </form>
         </Box>
       </Stack>
-      <Box>
-        New to us?{" "}
-        <Link color="teal.500" href="#">
-          Sign Up
-        </Link>
-      </Box>
     </Flex>
   );
 };
