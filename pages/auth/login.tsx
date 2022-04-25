@@ -20,6 +20,7 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { AuthForm, User } from "@lib/auth/data/types";
 import { login } from "@lib/auth/api/login";
+import { useRouter } from "next/router";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -31,11 +32,14 @@ const App = () => {
     formState: { errors },
     handleSubmit,
   } = useForm<AuthForm>();
+  const router = useRouter();
 
   const handleShowClick = () => setShowPassword(!showPassword);
   const onSubmit = handleSubmit((input) => {
     console.log(input);
-    login(input).then(console.log);
+    login(input).then((resp) => {
+      router.push("/");
+    });
   });
 
   return (
