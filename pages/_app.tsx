@@ -1,19 +1,22 @@
 import "../styles/globals.css";
-// import "devextreme/dist/css/dx.light.css";
+import { ChakraProvider } from "@chakra-ui/react";
 
 import type { AppProps } from "next/app";
 
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { AuthProvider } from "@lib/auth/ui/AuthProvider";
+import { DetailProvider } from "@lib/core/data/DetailProvider";
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <div className="dx-viewport">
-          <Component {...pageProps} />
-        </div>
+        <DetailProvider>
+          <ChakraProvider>
+            <Component {...pageProps} />{" "}
+          </ChakraProvider>
+        </DetailProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

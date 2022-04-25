@@ -17,8 +17,11 @@ export const AuthProvider = ({ children }: { children: ReactChild }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const router = useRouter();
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user);
+      if (!user) sessionStorage.removeItem("token");
+      else sessionStorage.setItem("token", await user.getIdToken());
+      console.log(user);
       if (!user) router.push("/auth/login");
     });
   }, []);

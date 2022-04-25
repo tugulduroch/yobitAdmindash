@@ -8,7 +8,6 @@ export type Challenge = {
   endDate: Date;
   startDate: Date;
   isFeatured: boolean;
-  tasks: Task[];
 };
 
 export type ChallengeViewModel = {
