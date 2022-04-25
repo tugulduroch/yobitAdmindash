@@ -12,5 +12,6 @@ if (!admin.apps.length) {
   }
 }
 
+export const auth = admin.auth();
 export const storage = admin.storage().bucket("yobit-54b2a.appspot.com");
 export const db = admin.firestore();
