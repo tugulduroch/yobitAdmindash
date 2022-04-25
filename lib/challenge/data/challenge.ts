@@ -12,10 +12,13 @@ export type Challenge = {
 
 export type ChallengeViewModel = {
   id: string;
+  color: string;
+  planet: string;
+  reward: string;
   content: string;
   imgUrl: string;
   title: string;
-  endDate: Date;
-  startDate: Date;
+  endDate: any;
+  startDate: any;
   isFeatured: boolean;
 };

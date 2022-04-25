@@ -49,12 +49,10 @@ export const fetcher = {
     const params = new URLSearchParams(data).toString();
     const path = getPath(`${subpath}${params ? `?${params}` : ""}`);
     const options = { ...defaultOptions, method: "GET", ...additionalOptions };
-    console.log("get request", path);
     let res = await axios.get(path);
-    console.log(res);
     return res.data;
   },
-  post: (subpath = "", data = {}, additionalOptions = {}) => {
+  post: async (subpath = "", data = {}, additionalOptions = {}) => {
     const path = getPath(subpath);
     const body = JSON.stringify(data);
     const options = {
@@ -63,10 +61,10 @@ export const fetcher = {
       body,
       ...additionalOptions,
     };
-
-    return fetch(path, options).then(handleResponse);
+    let res = await axios.post(path, data);
+    return res;
   },
-  put: (subpath = "", data = {}, additionalOptions = {}) => {
+  put: async (subpath = "", data = {}, additionalOptions = {}) => {
     const path = getPath(subpath);
     const body = JSON.stringify(data);
     const options = {
@@ -76,7 +74,8 @@ export const fetcher = {
       ...additionalOptions,
     };
 
-    return fetch(path, options).then(handleResponse);
+    let res = await axios.put(path, data);
+    return res;
   },
   patch: (subpath = "", data = {}, additionalOptions = {}) => {
     const path = getPath(subpath);
@@ -90,7 +89,7 @@ export const fetcher = {
 
     return fetch(path, options).then(handleResponse);
   },
-  delete: (subpath = "", data = {}, additionalOptions = {}) => {
+  delete: async (subpath = "", data = {}, additionalOptions = {}) => {
     const path = getPath(subpath);
     const body = JSON.stringify(data);
     const options = {
@@ -100,6 +99,7 @@ export const fetcher = {
       ...additionalOptions,
     };
 
-    return fetch(path, options).then(handleResponse);
+    let res = await axios.delete(path, data);
+    return res;
   },
 };

@@ -21,6 +21,7 @@ export function Layout({ children }: Props) {
         <Sidebar />
         <Flex
           bg="gray.100"
+          color="darkgray"
           display={{
             base: "none",
             lg: "block",
@@ -33,7 +34,7 @@ export function Layout({ children }: Props) {
         >
           {children}
         </Flex>
-        <Flex flex="1" p="6" bg="gray.100">
+        <Flex color="darkgray" flex="1" p="6" bg="gray.100">
           {detailReactNode}
         </Flex>
       </Flex>

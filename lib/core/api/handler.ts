@@ -2,8 +2,13 @@ import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
 import { corsMiddleware } from "@lib/core/api/cors";
 import { ApiRequest, ApiResponse } from "../data/types";
+import { authenticate, authorize } from "./middlewares/authorize";
 
-const middlewares = [corsMiddleware];
+const middlewares = [
+  corsMiddleware,
+  authenticate,
+  authorize({ hasRole: ["Admin"] }),
+];
 
 export const createHandler = (options = {}) => {
   console.log("create handler");
