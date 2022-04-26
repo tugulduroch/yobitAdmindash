@@ -82,7 +82,7 @@ export const ChallengeForm = ({ data }: Props) => {
     <Flex w="full">
       <Box flex="1">
         <FormControl isInvalid={!!errors.title}>
-          <FormLabel>Title</FormLabel>
+          <FormLabel>Гарчиг</FormLabel>
           <Input
             type="text"
             {...register("title", { required: "Required!" })}
@@ -90,7 +90,7 @@ export const ChallengeForm = ({ data }: Props) => {
           <FormErrorMessage>{errors.title?.message}</FormErrorMessage>
         </FormControl>
         <FormControl isInvalid={!!errors.content}>
-          <FormLabel>Content</FormLabel>
+          <FormLabel pt={4}>Агуулга</FormLabel>
           <Textarea
             {...register("content", { required: "Required!" })}
             noOfLines={3}
@@ -98,7 +98,7 @@ export const ChallengeForm = ({ data }: Props) => {
           <FormErrorMessage>{errors.content?.message}</FormErrorMessage>
         </FormControl>
         <FormControl isInvalid={!!errors.reward}>
-          <FormLabel>Reward</FormLabel>
+          <FormLabel pt={4}>Шагнал</FormLabel>
           <Textarea
             {...register("reward", { required: "Required!" })}
             noOfLines={3}
@@ -106,7 +106,7 @@ export const ChallengeForm = ({ data }: Props) => {
           <FormErrorMessage>{errors.reward?.message}</FormErrorMessage>
         </FormControl>
         <FormControl isInvalid={!!errors.startDate}>
-          <FormLabel>Start date</FormLabel>
+          <FormLabel pt={4}>Эхлэх өдөр</FormLabel>
           <Input
             type="datetime-local"
             {...register("startDate", { required: "Required!" })}
@@ -114,7 +114,7 @@ export const ChallengeForm = ({ data }: Props) => {
           <FormErrorMessage>{errors.startDate?.message}</FormErrorMessage>
         </FormControl>
         <FormControl isInvalid={!!errors.endDate}>
-          <FormLabel>End date</FormLabel>
+          <FormLabel pt={4}>Дуусах өдөр</FormLabel>
           <Input
             type="datetime-local"
             {...register("endDate", { required: "Required!" })}
@@ -122,7 +122,7 @@ export const ChallengeForm = ({ data }: Props) => {
           <FormErrorMessage>{errors.endDate?.message}</FormErrorMessage>
         </FormControl>
         <FormControl isInvalid={!!errors.planet}>
-          <FormLabel>Planet</FormLabel>
+          <FormLabel pt={4}>Гараг</FormLabel>
           <Image width="16" height="16" src={`/${planetField}`} />
           <Select
             defaultValue={"planets/Low Poly Planet Earth.H03 1.png"}
@@ -137,7 +137,7 @@ export const ChallengeForm = ({ data }: Props) => {
           <FormErrorMessage>{errors.planet?.message}</FormErrorMessage>
         </FormControl>
         <FormControl isInvalid={!!errors.color}>
-          <FormLabel>Color</FormLabel>
+          <FormLabel pt={4}>Өнгө</FormLabel>
           <Input
             type="color"
             {...register("color", { required: "Required!" })}
@@ -145,28 +145,28 @@ export const ChallengeForm = ({ data }: Props) => {
           <FormErrorMessage>{errors.color?.message}</FormErrorMessage>
         </FormControl>
 
-        <HStack justify="flex-end">
+        <HStack justify="flex-end" pt={4} mb={10}>
           {data && (
-            <Button onClick={onUpdate} colorScheme={"green"}>
-              Update
+            <Button onClick={onUpdate} colorScheme={"green"} >
+              Шинэчлэх
             </Button>
           )}
           {data && (
-            <Button onClick={onDelete} colorScheme={"red"}>
-              Delete
+            <Button onClick={onDelete} colorScheme={"red"} >
+              Устгах
             </Button>
           )}
 
           {data == undefined && (
             <Button onClick={onCreate} colorScheme={"blue"}>
-              Create
+              Үүсгэх
             </Button>
           )}
         </HStack>
       </Box>
       <Box w="6" />
       <Box flex="1">
-        <Heading size="md">Tasks</Heading>
+        <Heading size="md" pb={5}>Даалгавар</Heading>
         <TaskList challengeId={data?.id} />
       </Box>
     </Flex>

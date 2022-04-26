@@ -6,12 +6,12 @@ export const ChallengeHeader = () => {
   const { setDetailReactNode } = useDetail();
   return (
     <Flex p="6" justify="space-between">
-      <Heading>Challenges</Heading>
+      <Heading>Тэмцээнүүд</Heading>
       <Button
         onClick={() => setDetailReactNode(<ChallengeForm data={undefined} />)}
         colorScheme="blue"
       >
-        Create
+        Тэмцээн үүсгэх
       </Button>
     </Flex>
   );

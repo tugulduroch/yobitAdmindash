@@ -38,7 +38,7 @@ export const TaskList = ({ challengeId }: Props) => {
             <h2>
               <AccordionButton>
                 <Box flex="1" textAlign="left">
-                  Create task
+                  Даалгавар үүсгэх
                 </Box>
                 <AccordionIcon />
               </AccordionButton>

@@ -40,7 +40,7 @@ export const Sidebar = () => {
         <NavGroup label="Админ удирдлага">
           <AdminNavItem icon={<BiUser />} label="Тэмцээн үүсгэх" />
           <AdminNavItem icon={<BiUserCircle />} label="Даалгавар үүсгэх" />
-          <AdminNavItem icon={<BiUserPlus />} label="Хэрэглэгчид" />
+          {/* <AdminNavItem icon={<BiUserPlus />} label="Хэрэглэгчид" /> */}
         </NavGroup>      
         <NavGroup label="Тохиргоо">
           {/* <NavItem icon={<BiPurchaseTagAlt />} label="Plans" />

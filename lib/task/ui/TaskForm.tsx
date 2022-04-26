@@ -65,12 +65,12 @@ export const TaskForm = ({ data, challengeId }: Props) => {
   return (
     <>
       <FormControl isInvalid={!!errors.title}>
-        <FormLabel>Title</FormLabel>
+        <FormLabel pt={4}>Гарчиг</FormLabel>
         <Input type="text" {...register("title", { required: "Required!" })} />
         <FormErrorMessage>{errors.title?.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={!!errors.content}>
-        <FormLabel>Content</FormLabel>
+        <FormLabel pt={4}>Агуулга</FormLabel>
         <Textarea
           {...register("content", { required: "Required!" })}
           noOfLines={3}
@@ -78,7 +78,7 @@ export const TaskForm = ({ data, challengeId }: Props) => {
         <FormErrorMessage>{errors.content?.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={!!errors.startDate}>
-        <FormLabel>Start date</FormLabel>
+        <FormLabel pt={4}>Эхлэх өдөр</FormLabel>
         <Input
           type="datetime-local"
           {...register("startDate", { required: "Required!" })}
@@ -86,7 +86,7 @@ export const TaskForm = ({ data, challengeId }: Props) => {
         <FormErrorMessage>{errors.startDate?.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={!!errors.endDate}>
-        <FormLabel>End date</FormLabel>
+        <FormLabel pt={4}>Дуусах өдөр</FormLabel>
         <Input
           type="datetime-local"
           {...register("endDate", { required: "Required!" })}
@@ -97,18 +97,18 @@ export const TaskForm = ({ data, challengeId }: Props) => {
       <HStack justify="flex-end">
         {data && (
           <Button onClick={onUpdate} colorScheme={"green"}>
-            Update
+            Шинэчлэх
           </Button>
         )}
         {data && (
           <Button onClick={onDelete} colorScheme={"red"}>
-            Delete
+            Устгах
           </Button>
         )}
 
         {data == undefined && (
-          <Button onClick={onCreate} colorScheme={"blue"}>
-            Create
+          <Button onClick={onCreate} colorScheme={"blue"} mt={6}>
+            Үүсгэх
           </Button>
         )}
       </HStack>
