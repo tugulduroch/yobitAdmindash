@@ -1,27 +1,67 @@
 import {
+  Button,
   FormControl,
   FormErrorMessage,
   FormLabel,
+  HStack,
   Input,
   Textarea,
 } from "@chakra-ui/react";
+import { toaster } from "@lib/core/ui/helpers/toaster";
 import { useAsyncForm } from "@lib/core/utils/useAsyncData";
-import { useTasks } from "../data/hooks";
+import {
+  useTaskCreate,
+  useTaskDelete,
+  useTasks,
+  useTaskUpdate,
+} from "../data/hooks";
 import { Task } from "../data/task";
 
 type Props = {
-  data: Task;
+  data: Task | undefined;
+  challengeId: string | undefined;
 };
-export const TaskForm = ({ data }: Props) => {
-  const { refetch } = useTasks(data.challengeId);
+export const TaskForm = ({ data, challengeId }: Props) => {
+  const { refetch } = useTasks(challengeId);
+  const { mutate: create } = useTaskCreate();
+  const { mutate: update } = useTaskUpdate();
+  const { mutate: Delete } = useTaskDelete();
   const {
     register,
     watch,
     reset,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useAsyncForm<Task>(data || ({} as Task));
-
+  setValue("challengeId", challengeId || "");
+  const onDelete = () => {
+    console.log("delete");
+    data &&
+      Delete(data.id, {
+        onSuccess: () => {
+          refetch();
+        },
+      });
+  };
+  const onCreate = handleSubmit((input) => {
+    create(input, {
+      onSuccess: (res) => {
+        toaster.success("Successful!");
+        refetch();
+      },
+    });
+    console.log(input);
+  });
+  const onUpdate = handleSubmit((input) => {
+    console.log(input);
+    update(input, {
+      onSuccess: (res) => {
+        toaster.success("Successful!");
+        refetch();
+      },
+    });
+  });
   return (
     <>
       <FormControl isInvalid={!!errors.title}>
@@ -53,6 +93,25 @@ export const TaskForm = ({ data }: Props) => {
         />
         <FormErrorMessage>{errors.endDate?.message}</FormErrorMessage>
       </FormControl>
+
+      <HStack justify="flex-end">
+        {data && (
+          <Button onClick={onUpdate} colorScheme={"green"}>
+            Update
+          </Button>
+        )}
+        {data && (
+          <Button onClick={onDelete} colorScheme={"red"}>
+            Delete
+          </Button>
+        )}
+
+        {data == undefined && (
+          <Button onClick={onCreate} colorScheme={"blue"}>
+            Create
+          </Button>
+        )}
+      </HStack>
     </>
   );
 };

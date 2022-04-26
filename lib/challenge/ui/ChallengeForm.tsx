@@ -7,8 +7,11 @@ import {
   Input,
   Image,
   Select,
+  Text,
   Textarea,
   HStack,
+  Flex,
+  Heading,
 } from "@chakra-ui/react";
 import { useDetail } from "@lib/core/data/DetailProvider";
 import { toaster } from "@lib/core/ui/helpers/toaster";
@@ -35,7 +38,7 @@ export const ChallengeForm = ({ data }: Props) => {
     formState: { errors },
   } = useAsyncForm<ChallengeViewModel>(data || ({} as ChallengeViewModel));
   const { setDetailReactNode } = useDetail();
-  const { refetch } = useChallenges();
+  const { refetch, data: challenges } = useChallenges();
   const { mutate: create } = useChallengeCreate();
   const { mutate: update } = useChallengeUpdate();
   const { mutate: Delete } = useChallengeDelete();
@@ -57,7 +60,11 @@ export const ChallengeForm = ({ data }: Props) => {
     create(input, {
       onSuccess: (res) => {
         toaster.success("Successful!");
-        refetch();
+        refetch().then((challenges) => {
+          setDetailReactNode(
+            <ChallengeForm data={challenges.data?.find((r) => r.id == res)} />
+          );
+        });
       },
     });
     console.log(input);
@@ -72,84 +79,96 @@ export const ChallengeForm = ({ data }: Props) => {
     });
   });
   return (
-    <Box>
-      <FormControl isInvalid={!!errors.title}>
-        <FormLabel>Title</FormLabel>
-        <Input type="text" {...register("title", { required: "Required!" })} />
-        <FormErrorMessage>{errors.title?.message}</FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={!!errors.content}>
-        <FormLabel>Content</FormLabel>
-        <Textarea
-          {...register("content", { required: "Required!" })}
-          noOfLines={3}
-        />
-        <FormErrorMessage>{errors.content?.message}</FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={!!errors.reward}>
-        <FormLabel>Reward</FormLabel>
-        <Textarea
-          {...register("reward", { required: "Required!" })}
-          noOfLines={3}
-        />
-        <FormErrorMessage>{errors.reward?.message}</FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={!!errors.startDate}>
-        <FormLabel>Start date</FormLabel>
-        <Input
-          type="datetime-local"
-          {...register("startDate", { required: "Required!" })}
-        />
-        <FormErrorMessage>{errors.startDate?.message}</FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={!!errors.endDate}>
-        <FormLabel>End date</FormLabel>
-        <Input
-          type="datetime-local"
-          {...register("endDate", { required: "Required!" })}
-        />
-        <FormErrorMessage>{errors.endDate?.message}</FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={!!errors.planet}>
-        <FormLabel>Planet</FormLabel>
-        <Image width="16" height="16" src={`/${planetField}`} />
-        <Select
-          defaultValue={"planets/Low Poly Planet Earth.H03 1.png"}
-          {...register("planet", { required: "Required!" })}
-        >
-          <option value="planets/Low Poly Planet Earth.H03 1.png">Earth</option>
-          <option value="planets/red 1.png">Mars</option>
-          <option value="planets/Low Poly Sun.I09 1.png">Jupiter</option>
-        </Select>
-        <FormErrorMessage>{errors.planet?.message}</FormErrorMessage>
-      </FormControl>
-      <FormControl isInvalid={!!errors.color}>
-        <FormLabel>Color</FormLabel>
-        <Input type="color" {...register("color", { required: "Required!" })} />
-        <FormErrorMessage>{errors.color?.message}</FormErrorMessage>
-      </FormControl>
+    <Flex w="full">
+      <Box flex="1">
+        <FormControl isInvalid={!!errors.title}>
+          <FormLabel>Title</FormLabel>
+          <Input
+            type="text"
+            {...register("title", { required: "Required!" })}
+          />
+          <FormErrorMessage>{errors.title?.message}</FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={!!errors.content}>
+          <FormLabel>Content</FormLabel>
+          <Textarea
+            {...register("content", { required: "Required!" })}
+            noOfLines={3}
+          />
+          <FormErrorMessage>{errors.content?.message}</FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={!!errors.reward}>
+          <FormLabel>Reward</FormLabel>
+          <Textarea
+            {...register("reward", { required: "Required!" })}
+            noOfLines={3}
+          />
+          <FormErrorMessage>{errors.reward?.message}</FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={!!errors.startDate}>
+          <FormLabel>Start date</FormLabel>
+          <Input
+            type="datetime-local"
+            {...register("startDate", { required: "Required!" })}
+          />
+          <FormErrorMessage>{errors.startDate?.message}</FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={!!errors.endDate}>
+          <FormLabel>End date</FormLabel>
+          <Input
+            type="datetime-local"
+            {...register("endDate", { required: "Required!" })}
+          />
+          <FormErrorMessage>{errors.endDate?.message}</FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={!!errors.planet}>
+          <FormLabel>Planet</FormLabel>
+          <Image width="16" height="16" src={`/${planetField}`} />
+          <Select
+            defaultValue={"planets/Low Poly Planet Earth.H03 1.png"}
+            {...register("planet", { required: "Required!" })}
+          >
+            <option value="planets/Low Poly Planet Earth.H03 1.png">
+              Earth
+            </option>
+            <option value="planets/red 1.png">Mars</option>
+            <option value="planets/Low Poly Sun.I09 1.png">Jupiter</option>
+          </Select>
+          <FormErrorMessage>{errors.planet?.message}</FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={!!errors.color}>
+          <FormLabel>Color</FormLabel>
+          <Input
+            type="color"
+            {...register("color", { required: "Required!" })}
+          />
+          <FormErrorMessage>{errors.color?.message}</FormErrorMessage>
+        </FormControl>
 
-      <FormLabel>Tasks</FormLabel>
-      {data && <TaskList challengeId={data.id} />}
+        <HStack justify="flex-end">
+          {data && (
+            <Button onClick={onUpdate} colorScheme={"green"}>
+              Update
+            </Button>
+          )}
+          {data && (
+            <Button onClick={onDelete} colorScheme={"red"}>
+              Delete
+            </Button>
+          )}
 
-      <HStack justify="flex-end">
-        {data && (
-          <Button onClick={onUpdate} colorScheme={"green"}>
-            Update
-          </Button>
-        )}
-        {data && (
-          <Button onClick={onDelete} colorScheme={"red"}>
-            Delete
-          </Button>
-        )}
-
-        {data == undefined && (
-          <Button onClick={onCreate} colorScheme={"blue"}>
-            Create
-          </Button>
-        )}
-      </HStack>
-    </Box>
+          {data == undefined && (
+            <Button onClick={onCreate} colorScheme={"blue"}>
+              Create
+            </Button>
+          )}
+        </HStack>
+      </Box>
+      <Box w="6" />
+      <Box flex="1">
+        <Heading size="md">Tasks</Heading>
+        <TaskList challengeId={data?.id} />
+      </Box>
+    </Flex>
   );
 };

@@ -2,7 +2,6 @@ import { Box, Heading, Link, Text, VStack } from "@chakra-ui/react";
 import { useDetail } from "@lib/core/data/DetailProvider";
 import { useChallenges } from "../data/hooks";
 import { ChallengeForm } from "./ChallengeForm";
-import { CreateCard } from "./CreateCard";
 import { DetailView } from "./DetailView";
 
 export const ListView = () => {
@@ -23,7 +22,6 @@ export const ListView = () => {
           <Text size="xs">{r.reward}</Text>
         </Box>
       ))}
-      <CreateCard />
     </VStack>
   );
 };

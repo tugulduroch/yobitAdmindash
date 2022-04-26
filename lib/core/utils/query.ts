@@ -62,7 +62,7 @@ export const fetcher = {
       ...additionalOptions,
     };
     let res = await axios.post(path, data);
-    return res;
+    return res.data;
   },
   put: async (subpath = "", data = {}, additionalOptions = {}) => {
     const path = getPath(subpath);
@@ -75,7 +75,7 @@ export const fetcher = {
     };
 
     let res = await axios.put(path, data);
-    return res;
+    return res.data;
   },
   patch: (subpath = "", data = {}, additionalOptions = {}) => {
     const path = getPath(subpath);
@@ -100,6 +100,6 @@ export const fetcher = {
     };
 
     let res = await axios.delete(path, data);
-    return res;
+    return res.data;
   },
 };

@@ -10,13 +10,13 @@ import { useTasks } from "../data/hooks";
 import { TaskForm } from "./TaskForm";
 
 type Props = {
-  challengeId: string;
+  challengeId: string | undefined;
 };
 export const TaskList = ({ challengeId }: Props) => {
   const { data } = useTasks(challengeId);
   return (
     <>
-      <Accordion>
+      <Accordion allowToggle>
         {data?.map((r) => (
           <AccordionItem key={r.id}>
             <h2>
@@ -28,10 +28,26 @@ export const TaskList = ({ challengeId }: Props) => {
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              <TaskForm data={r} />
+              <TaskForm challengeId={challengeId} data={r} />
             </AccordionPanel>
           </AccordionItem>
         ))}
+
+        {challengeId && (
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Box flex="1" textAlign="left">
+                  Create task
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              <TaskForm challengeId={challengeId} data={undefined} />
+            </AccordionPanel>
+          </AccordionItem>
+        )}
       </Accordion>
     </>
   );
