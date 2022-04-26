@@ -94,7 +94,7 @@ export const TaskForm = ({ data, challengeId }: Props) => {
         <FormErrorMessage>{errors.endDate?.message}</FormErrorMessage>
       </FormControl>
 
-      <HStack justify="flex-end">
+      <HStack pt={4} justify="flex-end">
         {data && (
           <Button onClick={onUpdate} colorScheme={"green"}>
             Шинэчлэх
