@@ -9,7 +9,7 @@ export const CreateCard = () => {
       <Link
         onClick={() => setDetailReactNode(<ChallengeForm data={undefined} />)}
       >
-        <Heading size="md">Create a challenge</Heading>
+        <Heading size="md">Тэмцээн үүсгэх</Heading>
       </Link>
     </Box>
   );
